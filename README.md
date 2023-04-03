@@ -2,11 +2,11 @@
 TCP class for typescript
 
 ## 1. Install TypeScript
-'''bash
+```bash
 $ npm install -g typescript
-'''
+```
 
 ## 2. Initialize TypeScript Project
-'''bash
+```bash
 $ tsc --init
-'''
+```

@@ -23,7 +23,7 @@ interface Tcp {
 }
 
 interface IP {
-  version: number;
+  version: "IPv4" | "IPv6";
   headerLength: number;
   typeOfService: number;
   totalLength: number;

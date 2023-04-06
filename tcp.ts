@@ -19,17 +19,27 @@ interface Tcp {
     windowSize: number;
     checkSum: boolean;
     urgentPointer: number;
-    options: number;
+    options?: number | undefined;
 }
 
-// interface IP {
-// 	
-// }
+interface IP {
+  version: number;
+  headerLength: number;
+  typeOfService: number;
+  totalLength: number;
+  flags: number;
+  fragmentOffset: number;
+  timeToLive: number;
+  protocol: number;
+  headerChecksum: number;
+  sourceAddress: string;
+  destinationAddress: string;
+  options?: number | undefined;
+}
 
 
 // Types
-// type SocketType =  Tcp | IP;
-type SocketType = Tcp;
+type SocketType =  Tcp | IP;
 
 // Socket
 class Socket {

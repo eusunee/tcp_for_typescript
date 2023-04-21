@@ -47,17 +47,18 @@ class Socket {
     private view: DataView;
     private offset: number;
 
-	constructor(options?: SocketType) {
-        this.buffer = new ArrayBuffer(1024);
-        this.view = new DataView(this.buffer);
-        this.offset = 0;
+    constructor(options?: SocketType) {
+          this.buffer = new ArrayBuffer(1024);
+          this.view = new DataView(this.buffer);
+          this.offset = 0;
 
-        if (options) {
-            this.writeTcpHeader(options);
-        }
-    }
+          if (options) {
+              this.writeTcpHeader(options);
+          }
+      }
 
-    writeTcpHeader(header: Tcp) {
+    // Private method to write a TCP header to the buffer
+    private writeTcpHeader(header: Tcp) {
         this.view.setUint16(this.offset, header.sourcePort);
         this.offset += 2;
 
@@ -95,41 +96,57 @@ class Socket {
         this.offset += 2;
     }
 
-	write(buffer: ArrayBuffer, cb?: (err?: Error) => void): boolean {
-        // write the buffer to the socket
-        return true;
-      }
+    // Write data to the socket
+    write(buffer: ArrayBuffer, cb?: (err?: Error) => void): boolean {
+      // write the buffer to the socket
+      // TODO: Implement writing data to socket
+      return true;
+    }
     
-      connect() {
-        // connect the socket
-      }
-    
-      setEncoding() {
-        // set encoding
-      }
-    
-      pause() {
-        // pause the socket
-      }
-    
-      resume() {
-        // resume the socket
-      }
-    
-      end() {
-        // end the socket connection
-      }
-    
-      emit() {
-        // emit events
-      }
-    
-      on() {
-        // event listener
-      }
-    
-      once() {
-        // register event listener
-      }
+    // Connect the socket
+    connect(): void {
+      // TODO: Implement connecting the socket
+    }
+
+    // Set encoding
+    setEncoding(encoding: string): this {
+      // TODO: Implement setting encoding
+      return this;
+    }
+
+    // Pause the socket
+    pause(): this {
+      // TODO: Implement pausing the socket
+      return this;
+    }
+
+    // Resume the socket
+    resume(): this {
+      // TODO: Implement resuming the socket
+      return this;
+    }
+
+    // End the socket connection
+    end(): void {
+      // TODO: Implement ending the socket connection
+    }
+
+    // Emit an event
+    emit(event: string | symbol, ...args: any[]): boolean {
+      // TODO: Implement emitting an event
+      return true;
+    }
+
+    // Register an event listener
+    on(event: string | symbol, listener: (...args: any[]) => void): this {
+      // TODO: Implement registering an event listener
+      return this;
+    }
+
+    // Register a one-time event listener
+    once(event: string | symbol, listener: (...args: any[]) => void): this {
+      // TODO: Implement registering a one-time event listener
+      return this;
+    }
 
 }

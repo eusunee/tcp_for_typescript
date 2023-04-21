@@ -46,6 +46,9 @@ class Socket {
     private buffer: ArrayBuffer;
     private view: DataView;
     private offset: number;
+    private encoding: string = 'utf8';
+    private paused: boolean = false;
+    private destroyed: boolean = false;
 
     constructor(options?: SocketType) {
           this.buffer = new ArrayBuffer(1024);
@@ -55,7 +58,7 @@ class Socket {
           if (options) {
               this.writeTcpHeader(options);
           }
-      }
+    }
 
     // Private method to write a TCP header to the buffer
     private writeTcpHeader(header: Tcp) {
@@ -98,42 +101,60 @@ class Socket {
 
     // Write data to the socket
     write(buffer: ArrayBuffer, cb?: (err?: Error) => void): boolean {
+      if (this.destroyed) {
+        throw new Error('This socket has been destrpyed');
+      }
+      if(this.paused) {
+        return false;
+      }
+
       // write the buffer to the socket
       // TODO: Implement writing data to socket
+      console.log(`Writing data to socket: ${buffer}`);
       return true;
     }
     
     // Connect the socket
     connect(): void {
       // TODO: Implement connecting the socket
+      console.log(`Connecting the socket`);
     }
 
     // Set encoding
     setEncoding(encoding: string): this {
       // TODO: Implement setting encoding
+      console.log(`Setting encoding: ${encoding}`);
+      this.encoding = encoding;
       return this;
     }
 
     // Pause the socket
     pause(): this {
       // TODO: Implement pausing the socket
+      this.paused = true;
+      console.log(`Pausing the socket`);
       return this;
     }
 
     // Resume the socket
     resume(): this {
       // TODO: Implement resuming the socket
+      this.paused = false;
+      console.log(`Resuming the socket`);
       return this;
     }
 
     // End the socket connection
     end(): void {
       // TODO: Implement ending the socket connection
+      console.log(`Ending the socket connection`);
+      this.destroyed = true;
     }
 
     // Emit an event
     emit(event: string | symbol, ...args: any[]): boolean {
       // TODO: Implement emitting an event
+      // console.log(`Emmiting event: ${event}`);
       return true;
     }
 
